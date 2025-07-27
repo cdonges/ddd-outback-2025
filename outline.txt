@@ -1,0 +1,22 @@
+Developer creates a method that's slow
+
+IDictionary
+    Simple
+    Things are faster
+    Getting interesting threading errors
+ConcurrentDictionary
+    Fixes concurrent issues
+    Size grows
+IMemoryCache
+    Evicts older entries
+    Duplicated calls to resource
+    Cache invalidation
+IDistributedCache
+    Slower to get value
+    Cost and load on distibuted cache
+HybridCache
+    Cache invalidation
+MuleCache
+    An experement
+FusionCache
+    Nirvana
