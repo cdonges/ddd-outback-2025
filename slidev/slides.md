@@ -46,49 +46,71 @@ transition: slide-left
 - Simple
 - Things are faster
 
-# However
+&nbsp;
+
+``` cs
+IDictionary<string, string> dictionary = new IDictionary<string, string>()
+```
+&nbsp;
+
+## However
 - Getting interesting threading errors
 
 ---
 transition: slide-left
 ---
+
 # ConcurrentDictionary
 - Fixes concurrent issues
 
-# However
+## However
 - Size grows
+
 ---
 transition: slide-left
 ---
+
 # IMemoryCache
 - Evicts older entries
 
-# However
+## However
 - Duplicated calls to resource
 - Cache invalidation
+
 ---
 transition: slide-left
 ---
+
 # IDistributedCache
 - Removes duplicaed calles
 - Incalidation easy
 
-# However
+## However
 - Slower to get value
 - Cost and load on distibuted cache
+
 ---
 transition: slide-left
 ---
+
 # HybridCache
 - Cache invalidation
 
-# However
+## However
 - Cache invalidation
+
 ---
 transition: slide-left
 ---
+
 # MuleCache
-- An experement
+- An implementation of HbridCache
+- Company hack-a-thon project
+- Adds distributed cache invalidation using Redis pub/sub
+
+## However
+- There is a project that already does all this (and more).
+
 ---
 transition: slide-left
 ---
