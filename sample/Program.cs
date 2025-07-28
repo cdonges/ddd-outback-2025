@@ -18,6 +18,7 @@ public class Program
                 loggerBuilder.AddFilter("ZiggyCreatures.Caching.Fusion.FusionCache", LogLevel.None);
             })
             .AddScoped<ITestService, TestService>()
+            .AddScoped<IDashboardService, DashboardService>()
             .AddFusionCacheService()
             .AddHostedService<ProgramService>();
 
