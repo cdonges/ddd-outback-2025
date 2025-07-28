@@ -187,11 +187,18 @@ return await fusionCache.GetOrSetAsync(
 
 ---
 transition: slide-left
-image: intertech.jpg
+image: tps.jpg
 layout: image-right
 ---
 
 # Code demo
+---
+transition: slide-left
+image: lumberg.jpg
+layout: image-right
+---
+
+# Questions?
 
 ---
 transition: slide-left
