@@ -21,11 +21,9 @@ public class DistributedCacheService(IDistributedCache distributedCache) : ICach
         return Encoding.UTF8.GetString(bytes);
     }
 
-    public Task Remove(string key)
+    public async Task Remove(string key)
     {
-        distributedCache.Remove(key);
-
-        return Task.CompletedTask;
+        await distributedCache.RemoveAsync(key);
     }
 }
 
