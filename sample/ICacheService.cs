@@ -2,7 +2,7 @@ namespace Sample;
 
 public interface ICacheService
 {
-    Task<string> GetOrSet(string key, Func<string> func);
+    Task<string> GetOrSet(string key, Func<Task<string>> func);
 
     Task Remove(string key);
 }

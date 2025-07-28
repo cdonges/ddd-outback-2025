@@ -7,26 +7,24 @@ public class DictionaryCache : ICacheService
 {
     private Dictionary<string, string> dictionary = new Dictionary<string, string>();
 
-    public async Task<string> GetOrSet(string key, Func<string> func)
+    public async Task<string> GetOrSet(string key, Func<Task<string>> func)
     {
-        await Task.CompletedTask;
-
         if (!dictionary.ContainsKey(key))
         {
-            dictionary[key] = func();
+            dictionary[key] = await func();
         }
 
         return dictionary[key];
     }
 
-    public async Task Remove(string key)
+    public Task Remove(string key)
     {
-        await Task.CompletedTask;
-
         if (dictionary.ContainsKey(key))
         {
             dictionary.Remove(key);
         }
+
+        return Task.CompletedTask;
     }
 }
 
