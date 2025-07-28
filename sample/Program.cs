@@ -19,7 +19,7 @@ public class Program
             })
             .AddScoped<ITestService, TestService>()
             .AddScoped<IDashboardService, DashboardService>()
-            .AddFusionCacheService()
+            .AddDictionaryCacheService()
             .AddHostedService<ProgramService>();
 
         using var host = builder.Build();

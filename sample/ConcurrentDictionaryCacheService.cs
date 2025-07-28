@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Sample;
 
-public class ConcurrentDictionaryCache : ICacheService
+public class ConcurrentDictionaryCacheService : ICacheService
 {
     private ConcurrentDictionary<string, string> dictionary = new ConcurrentDictionary<string, string>();
 
@@ -27,8 +27,8 @@ public class ConcurrentDictionaryCache : ICacheService
 
 public static class ConcurrentDictionaryCacheExtensions
 {
-    public static IServiceCollection AddConcurrentDictionaryCache(this IServiceCollection serviceCollection)
+    public static IServiceCollection AddConcurrentDictionaryCacheService(this IServiceCollection serviceCollection)
     {
-        return serviceCollection.AddSingleton<ICacheService, ConcurrentDictionaryCache>();
+        return serviceCollection.AddSingleton<ICacheService, ConcurrentDictionaryCacheService>();
     }
 }

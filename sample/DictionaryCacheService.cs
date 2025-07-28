@@ -2,7 +2,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Sample;
 
-public class DictionaryCache : ICacheService
+public class DictionaryCacheService : ICacheService
 {
     private Dictionary<string, string> dictionary = new Dictionary<string, string>();
 
@@ -29,8 +29,8 @@ public class DictionaryCache : ICacheService
 
 public static class DictionaryCacheExtensions
 {
-    public static IServiceCollection AddDictionaryCache(this IServiceCollection serviceCollection)
+    public static IServiceCollection AddDictionaryCacheService(this IServiceCollection serviceCollection)
     {
-        return serviceCollection.AddSingleton<ICacheService, DictionaryCache>();
+        return serviceCollection.AddSingleton<ICacheService, DictionaryCacheService>();
     }
 }
