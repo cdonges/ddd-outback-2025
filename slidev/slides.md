@@ -20,6 +20,8 @@ drawings:
 transition: slide-left
 ---
 
+&nbsp;
+
 # The events you are about to witness are __true__.
 
 # The names and locations have been changed to protect those still living.
@@ -49,7 +51,12 @@ transition: slide-left
 &nbsp;
 
 ``` cs
-IDictionary<string, string> dictionary = new IDictionary<string, string>()
+if (!dictionary.ContainsKey(key))
+{
+    dictionary[key] = await func();
+}
+
+return dictionary[key];
 ```
 &nbsp;
 
@@ -63,6 +70,15 @@ transition: slide-left
 # ConcurrentDictionary
 - Fixes concurrent issues
 
+``` cs
+if (!dictionary.ContainsKey(key))
+{
+    dictionary[key] = await func();
+}
+
+return dictionary[key];
+```
+
 ## However
 - Size grows
 
@@ -72,6 +88,10 @@ transition: slide-left
 
 # IMemoryCache
 - Evicts older entries
+
+``` cs
+return (await memoryCache.GetOrCreateAsync(key, async key => await func()))!;
+```
 
 ## However
 - Duplicated calls to resource
@@ -85,6 +105,18 @@ transition: slide-left
 - Removes duplicaed calles
 - Incalidation easy
 
+``` cs
+var bytes = await distributedCache.GetAsync(key);
+if (bytes == null)
+{
+    string val = await func();
+    await distributedCache.SetAsync(key, Encoding.UTF8.GetBytes(val));
+    return val;
+}
+
+return Encoding.UTF8.GetString(bytes);
+```
+
 ## However
 - Slower to get value
 - Cost and load on distibuted cache
@@ -96,10 +128,18 @@ transition: slide-left
 # HybridCache
 - Cache invalidation
 
+``` cs
+return await hybridCache.GetOrCreateAsync(
+    key,
+    async cancel => await func());
+```
+
 ## However
 - Cache invalidation
 
 ---
+layout: image-right
+image: mulecache_logo.jpg
 transition: slide-left
 ---
 
@@ -119,6 +159,12 @@ transition: slide-left
 - Secondary load from distributed
 - Distributed invalidation
 - Adaptive
+
+``` cs
+return await fusionCache.GetOrSetAsync(
+    key,
+    async cancel => await func());
+```
 ---
 transition: slide-left
 layout: image-right
