@@ -14,17 +14,13 @@ cdonges@gmail.com
 Senior Softare Engineer at Vald
 
 ---
-class: text-center
+class: cover
 drawings:
   persist: false
 transition: slide-left
 ---
 
-&nbsp;
-
-# The events you are about to witness are __true__.
-
-# The names and locations have been changed to protect those still living.
+# The events you are about to witness are __true__. The names and locations have been changed to protect those still living.
 
 ---
 layout: image-right
@@ -70,6 +66,8 @@ transition: slide-left
 # ConcurrentDictionary
 - Fixes concurrent issues
 
+&nbsp;
+
 ``` cs
 if (!dictionary.ContainsKey(key))
 {
@@ -78,6 +76,8 @@ if (!dictionary.ContainsKey(key))
 
 return dictionary[key];
 ```
+
+&nbsp;
 
 ## However
 - Size grows
@@ -89,9 +89,13 @@ transition: slide-left
 # IMemoryCache
 - Evicts older entries
 
+&nbsp;
+
 ``` cs
 return (await memoryCache.GetOrCreateAsync(key, async key => await func()))!;
 ```
+
+&nbsp;
 
 ## However
 - Duplicated calls to resource
@@ -102,8 +106,10 @@ transition: slide-left
 ---
 
 # IDistributedCache
-- Removes duplicaed calles
-- Incalidation easy
+- Removes duplicated calls
+- Invalidation easy
+
+&nbsp;
 
 ``` cs
 var bytes = await distributedCache.GetAsync(key);
@@ -117,6 +123,8 @@ if (bytes == null)
 return Encoding.UTF8.GetString(bytes);
 ```
 
+&nbsp;
+
 ## However
 - Slower to get value
 - Cost and load on distibuted cache
@@ -126,16 +134,20 @@ transition: slide-left
 ---
 
 # HybridCache
-- Cache invalidation
+- Two levels of caching
+- Stampede protection
+
+&nbsp;
 
 ``` cs
 return await hybridCache.GetOrCreateAsync(
     key,
     async cancel => await func());
 ```
+&nbsp;
 
 ## However
-- Cache invalidation
+- Local caches can get out of date
 
 ---
 layout: image-right
@@ -147,6 +159,9 @@ transition: slide-left
 - An implementation of HbridCache
 - Company hack-a-thon project
 - Adds distributed cache invalidation using Redis pub/sub
+- Created a logo, which is the hardest part of any project
+
+&nbsp;
 
 ## However
 - There is a project that already does all this (and more).
@@ -154,17 +169,30 @@ transition: slide-left
 ---
 transition: slide-left
 ---
+
 # FusionCache
 - Fast retrieval from local
 - Secondary load from distributed
 - Distributed invalidation
+- Stampede protection
 - Adaptive
+
+&nbsp;
 
 ``` cs
 return await fusionCache.GetOrSetAsync(
     key,
     async cancel => await func());
 ```
+
+---
+transition: slide-left
+image: intertech.jpg
+layout: image-right
+---
+
+# Code demo
+
 ---
 transition: slide-left
 layout: image-right
