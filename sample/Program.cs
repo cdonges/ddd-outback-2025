@@ -15,6 +15,7 @@ public class Program
                 loggerBuilder.ClearProviders();
                 loggerBuilder.AddConsole();
                 loggerBuilder.AddFilter("Microsoft", LogLevel.None);
+                loggerBuilder.AddFilter("ZiggyCreatures.Caching.Fusion.FusionCache", LogLevel.None);
             })
             .AddScoped<ITestService, TestService>()
             .AddFusionCacheService()
