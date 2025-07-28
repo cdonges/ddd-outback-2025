@@ -1,4 +1,3 @@
-
 namespace Sample;
 
 public class TestService(ICacheService cacheService) : ITestService

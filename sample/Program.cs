@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
@@ -18,7 +17,7 @@ public class Program
                 loggerBuilder.AddFilter("Microsoft", LogLevel.None);
             })
             .AddScoped<ITestService, TestService>()
-            .AddHybridCacheService()
+            .AddFusionCacheService()
             .AddHostedService<ProgramService>();
 
         using var host = builder.Build();
