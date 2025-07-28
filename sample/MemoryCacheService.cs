@@ -7,7 +7,7 @@ public class MemoryCacheService(IMemoryCache memoryCache) : ICacheService
 {
     public async Task<string> GetOrSet(string key, Func<Task<string>> func)
     {
-        return await memoryCache.GetOrCreateAsync(key, async key => await func());
+        return (await memoryCache.GetOrCreateAsync(key, async key => await func()))!;
     }
 
     public Task Remove(string key)
