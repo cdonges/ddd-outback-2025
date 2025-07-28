@@ -18,7 +18,7 @@ public class Program
                 loggerBuilder.AddFilter("Microsoft", LogLevel.None);
             })
             .AddScoped<ITestService, TestService>()
-            .AddDMemoryCacheService()
+            .AddDistributedCacheService()
             .AddHostedService<ProgramService>();
 
         using var host = builder.Build();
