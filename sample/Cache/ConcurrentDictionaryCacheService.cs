@@ -1,7 +1,7 @@
 using System.Collections.Concurrent;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Sample;
+namespace Sample.Cache;
 
 public class ConcurrentDictionaryCacheService : ICacheService
 {

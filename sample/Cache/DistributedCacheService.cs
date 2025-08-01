@@ -3,7 +3,7 @@ using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Sample;
+namespace Sample.Cache;
 
 public class DistributedCacheService(IDistributedCache distributedCache) : ICacheService
 {

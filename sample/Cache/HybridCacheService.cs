@@ -1,7 +1,7 @@
 using Microsoft.Extensions.Caching.Hybrid;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Sample;
+namespace Sample.Cache;
 
 public class HybridCacheService(HybridCache hybridCache) : ICacheService
 {

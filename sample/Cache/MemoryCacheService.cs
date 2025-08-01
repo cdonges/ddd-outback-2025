@@ -1,7 +1,7 @@
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Sample;
+namespace Sample.Cache;
 
 public class MemoryCacheService(IMemoryCache memoryCache) : ICacheService
 {

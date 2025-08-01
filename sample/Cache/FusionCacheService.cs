@@ -4,7 +4,7 @@ using ZiggyCreatures.Caching.Fusion;
 using ZiggyCreatures.Caching.Fusion.Backplane.StackExchangeRedis;
 using ZiggyCreatures.Caching.Fusion.Serialization.SystemTextJson;
 
-namespace Sample;
+namespace Sample.Cache;
 
 public class FusionCacheService(IFusionCache fusionCache) : ICacheService
 {

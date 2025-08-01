@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Sample.Cache;
 
 namespace Sample;
 
@@ -8,21 +9,11 @@ public class Program
 {
     public static async Task Main(string[] args)
     {
-        var builder = Host.CreateApplicationBuilder();
-
-        builder.Services.AddLogging(loggerBuilder =>
-            {
-                loggerBuilder.ClearProviders();
-                loggerBuilder.AddConsole();
-                loggerBuilder.AddFilter("Microsoft", LogLevel.None);
-                loggerBuilder.AddFilter("ZiggyCreatures.Caching.Fusion.FusionCache", LogLevel.None);
-            })
-            .AddScoped<ITestService, TestService>()
-            .AddScoped<IDashboardService, DashboardService>()
-            .AddDictionaryCacheService()
-            .AddHostedService<ProgramService>();
-
-        using var host = builder.Build();
-        await host.RunAsync();
+        var containerCount = 10;
+        IResultsService resultsService = new ResultsService(containerCount);
+        IDashboardService dashboardService = new DashboardService(resultsService);
+        var containers = Enumerable.Range(0, containerCount).Select(x => new HostContainer(x)).ToList();
+        await Task.WhenAll(containers.Select(x => x.Run(dashboardService, resultsService)));
+        resultsService.Print();
     }
 }

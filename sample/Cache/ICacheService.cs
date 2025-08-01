@@ -1,4 +1,4 @@
-namespace Sample;
+namespace Sample.Cache;
 
 public interface ICacheService
 {

@@ -1,6 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Sample;
+namespace Sample.Cache;
 
 public class DictionaryCacheService : ICacheService
 {
