@@ -23,7 +23,7 @@ public class HostContainer(int id)
             .AddSingleton(_ => dashboardService)
             .AddSingleton(_ => resultsService)
             .AddSingleton(new Settings() { Id = id })
-            .AddDMemoryCacheService()
+            .AddFusionCacheService()
             .AddHostedService<ProgramService>();
 
         using var host = builder.Build();

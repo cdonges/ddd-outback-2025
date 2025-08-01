@@ -20,7 +20,7 @@ public class MemoryCacheService(IMemoryCache memoryCache) : ICacheService
 
 public static class MemoryCacheServiceExtensions
 {
-    public static IServiceCollection AddDMemoryCacheService(this IServiceCollection serviceCollection)
+    public static IServiceCollection AddMemoryCacheService(this IServiceCollection serviceCollection)
     {
         return serviceCollection.AddMemoryCache().AddSingleton<ICacheService, MemoryCacheService>();
     }

@@ -22,7 +22,7 @@ public class DashboardService : IDashboardService
     {
         resultsService.AddCacheMiss(id);
         var userDashboard = new { UserId = userId, Title = $"Dashboard for {userId}", Content = "" };
-        await Task.Delay(2000);
+        await Task.Delay(3000);
         return JsonSerializer.Serialize(userDashboard);
     }
 }
