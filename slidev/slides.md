@@ -88,6 +88,7 @@ transition: slide-left
 
 # IMemoryCache
 - Evicts older entries
+- This is the first 'cache' I would recommend
 
 &nbsp;
 
@@ -98,7 +99,7 @@ return (await memoryCache.GetOrCreateAsync(key, async key => await func()))!;
 &nbsp;
 
 ## However
-- Duplicated calls to resource
+- Duplicated calls to SQL
 - Cache invalidation
 
 ---
@@ -108,8 +109,7 @@ transition: slide-left
 # IDistributedCache
 - Removes duplicated calls
 - Invalidation easy
-
-&nbsp;
+- Redis, SQL Server, NCache + Others
 
 ``` cs
 var bytes = await distributedCache.GetAsync(key);
@@ -122,8 +122,6 @@ if (bytes == null)
 
 return Encoding.UTF8.GetString(bytes);
 ```
-
-&nbsp;
 
 ## However
 - Slower to get value
@@ -148,6 +146,18 @@ return await hybridCache.GetOrCreateAsync(
 
 ## However
 - Local caches can get out of date
+
+---
+transition: slide-left
+image: bat.png
+layout: image-right
+---
+
+# Stampede protection
+- Multiple requests for the same data at the same time
+- Only retrieves the first requests while the others wait
+- Reduce resource usage
+- Included in HybridCache, with nothing to do
 
 ---
 layout: image-right
