@@ -18,13 +18,13 @@ public class ResultsService : IResultsService
 
     public void AddCacheMiss(int id)
     {
-        Console.WriteLine($"{id}  - cache miss");
+        Console.WriteLine($"{DateTime.UtcNow}: Virtual server {id}  - cache miss");
         cacheMisses.Add(id);
     }
 
     public void AddTiming(int id, TimeSpan elapsed)
     {
-        Console.WriteLine($"{id} - {elapsed.TotalMilliseconds}");
+        Console.WriteLine($"{DateTime.UtcNow}: Virtual server {id} - Time to get value {elapsed.TotalMilliseconds}ms");
         timings[id].Add(elapsed);
     }
 

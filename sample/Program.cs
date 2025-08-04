@@ -9,7 +9,7 @@ public class Program
 {
     public static async Task Main(string[] args)
     {
-        var containerCount = 10;
+        var containerCount = 5;
         IResultsService resultsService = new ResultsService(containerCount);
         IDashboardService dashboardService = new DashboardService(resultsService);
         var containers = Enumerable.Range(0, containerCount).Select(x => new HostContainer(x)).ToList();

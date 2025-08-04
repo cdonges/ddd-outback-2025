@@ -7,9 +7,9 @@ public class TestService(ICacheService cacheService, IDashboardService dashboard
 {
     public async Task RunAsync()
     {
-        var tasks = Enumerable.Range(0, 200).Select(_ => Task.Run(async () =>
+        var tasks = Enumerable.Range(0, 100).Select(_ => Task.Run(async () =>
         {
-            await Task.Delay(Random.Shared.Next(10 * 2000));
+            await Task.Delay(Random.Shared.Next(10 * 1000));
             var sw = Stopwatch.StartNew();
             var userId = dashboardService.RandomId();
             var val = await cacheService.GetOrSet(userId.ToString(), async () => await dashboardService.Get(userId, settings.Id));
