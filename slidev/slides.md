@@ -11,7 +11,7 @@ theme: dracula
 Christoph Donges
 cdonges@gmail.com
 
-Senior Softare Engineer at Vald
+Senior Software Engineer at Vald
 
 ---
 class: cover
@@ -125,7 +125,7 @@ return Encoding.UTF8.GetString(bytes);
 
 ## However
 - Slower to get value
-- Cost and load on distibuted cache
+- Cost and load on distributed cache
 
 ---
 transition: slide-left
@@ -166,7 +166,7 @@ transition: slide-left
 ---
 
 # MuleCache
-- An implementation of HbridCache
+- An implementation of HybridCache
 - Company hack-a-thon project
 - Adds distributed cache invalidation using Redis pub/sub
 - Created a logo, which is the hardest part of any project
