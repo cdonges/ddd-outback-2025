@@ -1,4 +1,4 @@
-namespace Sample;
+namespace sample.Enums;
 
 public enum CacheTypeEnum
 {

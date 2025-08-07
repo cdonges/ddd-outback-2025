@@ -1,14 +1,14 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Sample;
+using sample.Enums;
 using Sample.Cache;
 
 namespace Sample;
 
-public class HostContainer(int id, CacheTypeEnum cacheType)
+public class HostContainer(int id, CacheTypeEnum cacheType, IDashboardService dashboardService, IResultsService resultsService)
 {
-    public async Task Run(IDashboardService dashboardService, IResultsService resultsService)
+    public async Task Run()
     {
         var builder = Host.CreateApplicationBuilder();
 
