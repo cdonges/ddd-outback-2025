@@ -58,6 +58,15 @@ return dictionary[key];
 serviceCollection.AddSingleton<ICacheService, DictionaryCacheService>();
 ```
 ---
+layout: image
+image: dictionary1.png
+backgroundSize: contain
+transition: slide-left
+---
+
+# IDictionary
+
+---
 layout: image-right
 image: milton1.webp
 transition: slide-left
@@ -111,6 +120,14 @@ return (await memoryCache.GetOrCreateAsync(key, async key => await func()))!;
 serviceCollection.AddMemoryCache().AddSingleton<ICacheService, MemoryCacheService>();
 ```
 ---
+layout: image
+image: memoryCache1.png
+backgroundSize: contain
+transition: slide-left
+---
+# IMemoryCache
+
+---
 layout: image-right
 image: milton3.jpg
 transition: slide-left
@@ -150,6 +167,13 @@ serviceCollection
     .AddSingleton<ICacheService, DistributedCacheService>();
 ```
 ---
+layout: image
+image: distributedCache1.png
+backgroundSize: contain
+transition: slide-left
+---
+# IDistributedCache
+---
 layout: image-right
 image: milton4.webp
 transition: slide-left
@@ -185,6 +209,13 @@ serviceCollection
     .AddMemoryCache()
     .AddSingleton<ICacheService, HybridCacheService>();
 ```
+---
+layout: image
+image: hybridCache1.png
+backgroundSize: contain
+transition: slide-left
+---
+# HybridCache
 ---
 layout: image-right
 image: milton5.jpg
@@ -261,7 +292,17 @@ serviceCollection.AddSingleton<ICacheService, FusionCacheService>();
 &nbsp;
 
 ---
+layout: image
+image: fusionCache1.png
+backgroundSize: contain
 transition: slide-left
+---
+# FusionCache
+
+---
+transition: slide-left
+layout: image-right
+image: milton-cake.jpg
 ---
 # Adaptave caching
 - Things like auth tokens
