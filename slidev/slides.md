@@ -53,9 +53,16 @@ if (!dictionary.ContainsKey(key))
 }
 
 return dictionary[key];
-```
-&nbsp;
 
+// registration
+serviceCollection.AddSingleton<ICacheService, DictionaryCacheService>();
+```
+---
+layout: image-right
+image: milton1.webp
+transition: slide-left
+---
+# IDictionary
 ## However
 - Getting interesting threading errors
 
@@ -75,17 +82,22 @@ if (!dictionary.ContainsKey(key))
 }
 
 return dictionary[key];
+
+// registration
+serviceCollection.AddSingleton<ICacheService, ConcurrentDictionaryCacheService>();
 ```
-
-&nbsp;
-
+---
+layout: image-right
+image: milton2.jpg
+transition: slide-left
+---
+# ConcurrentDictionary
 ## However
 - Size grows
 
 ---
 transition: slide-left
 ---
-
 # IMemoryCache
 - Evicts older entries
 - This is the first 'cache' I would recommend
@@ -94,10 +106,16 @@ transition: slide-left
 
 ``` cs
 return (await memoryCache.GetOrCreateAsync(key, async key => await func()))!;
+
+// registration
+serviceCollection.AddMemoryCache().AddSingleton<ICacheService, MemoryCacheService>();
 ```
-
-&nbsp;
-
+---
+layout: image-right
+image: milton3.jpg
+transition: slide-left
+---
+# IMemoryCache
 ## However
 - Duplicated calls to SQL
 - Cache invalidation
@@ -121,8 +139,22 @@ if (bytes == null)
 }
 
 return Encoding.UTF8.GetString(bytes);
-```
 
+// registration
+serviceCollection
+    .AddStackExchangeRedisCache(options =>
+    {
+        options.Configuration = "localhost";
+        options.InstanceName = "sample";
+    })
+    .AddSingleton<ICacheService, DistributedCacheService>();
+```
+---
+layout: image-right
+image: milton4.webp
+transition: slide-left
+---
+# IDistributedCache
 ## However
 - Slower to get value
 - Cost and load on distributed cache
@@ -141,9 +173,24 @@ transition: slide-left
 return await hybridCache.GetOrCreateAsync(
     key,
     async cancel => await func());
-```
-&nbsp;
 
+// registration
+serviceCollection.AddHybridCache();
+serviceCollection
+    .AddStackExchangeRedisCache(options =>
+    {
+        options.Configuration = "localhost";
+        options.InstanceName = "sample";
+    })
+    .AddMemoryCache()
+    .AddSingleton<ICacheService, HybridCacheService>();
+```
+---
+layout: image-right
+image: milton5.jpg
+transition: slide-left
+---
+# HybridCache
 ## However
 - Local caches can get out of date
 
@@ -173,6 +220,12 @@ transition: slide-left
 
 &nbsp;
 
+---
+layout: image-right
+image: milton.jpg
+transition: slide-left
+---
+# MuleCache
 ## However
 - There is a project that already does all this (and more).
 
@@ -181,27 +234,42 @@ transition: slide-left
 ---
 
 # FusionCache
-- Fast retrieval from local
-- Secondary load from distributed
+- Fast retrieval from local, Secondary load from distributed
 - Distributed invalidation
 - Stampede protection
 - Adaptive
-
-&nbsp;
 
 ``` cs
 return await fusionCache.GetOrSetAsync(
     key,
     async cancel => await func());
+// registration
+serviceCollection
+    .AddFusionCache()
+    .WithSerializer(
+        new FusionCacheSystemTextJsonSerializer()
+    )
+    .WithDistributedCache(
+        new RedisCache(new RedisCacheOptions { Configuration = "localhost" })
+    )
+    .WithBackplane(
+        new RedisBackplane(new RedisBackplaneOptions { Configuration = "localhost" })
+    );
+
+serviceCollection.AddSingleton<ICacheService, FusionCacheService>();
 ```
+&nbsp;
 
 ---
 transition: slide-left
-image: tps.jpg
-layout: image-right
 ---
+# Adaptave caching
+- Things like auth tokens
+- Don't know what the expiry should be until you get the value
 
-# Code demo
+``` cs
+// put code here
+```
 ---
 transition: slide-left
 image: lumberg.jpg
