@@ -154,7 +154,6 @@ if (bytes == null)
     await distributedCache.SetAsync(key, Encoding.UTF8.GetBytes(val));
     return val;
 }
-
 return Encoding.UTF8.GetString(bytes);
 
 // registration
@@ -166,6 +165,7 @@ serviceCollection
     })
     .AddSingleton<ICacheService, DistributedCacheService>();
 ```
+
 ---
 layout: image
 image: distributedCache1.png
@@ -304,13 +304,21 @@ transition: slide-left
 layout: image-right
 image: milton-cake.jpg
 ---
+
 # Adaptave caching
 - Things like auth tokens
 - Don't know what the expiry should be until you get the value
 
 ``` cs
-// put code here
+   async (context, _) =>
+    {
+        var token = await GetNewAccessToken();
+        context.Options.Duration = 
+            TimeSpan.FromSeconds(token.ExpiresIn);
+        return token;
+    })).AccessToken;
 ```
+
 ---
 transition: slide-left
 image: lumberg.jpg
