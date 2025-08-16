@@ -4,6 +4,8 @@ drawings:
   persist: false
 transition: slide-left
 theme: dracula
+layout: image-right
+image: 4P.jpg
 ---
 
 # IDictionary to caching nirvana
@@ -11,7 +13,7 @@ theme: dracula
 Christoph Donges
 cdonges@gmail.com
 
-Senior Software Engineer at Vald
+- Senior Software Engineer at Vald
 
 ---
 class: cover
@@ -266,7 +268,7 @@ transition: slide-left
 
 # FusionCache
 - Fast retrieval from local, Secondary load from distributed
-- Distributed invalidation
+- Distributed invalidation with redis pub/sub called backplane
 - Stampede protection
 - Adaptive
 
